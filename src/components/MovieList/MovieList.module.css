@@ -1,0 +1,52 @@
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin-top: 50px; /* Можна змінити відповідно до вашого вимог */
+    padding: 20px;
+  }
+  
+  .list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .listItem {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .listItem:hover {
+    transform: translateY(-5px);
+  }
+  
+  .titleContainer {
+    padding: 15px;
+  }
+  
+  .title {
+    color: #333;
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .releaseDate {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+  }
+  
+  /* Add any additional styles as needed */
+  

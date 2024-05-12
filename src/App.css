@@ -1,0 +1,69 @@
+/* App.css */
+
+/* Стилі для загального контейнера App */
+.App {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Стилі для відображення загрузки */
+.Loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 20px;
+}
+
+/* Основні стилі для навігаційної панелі */
+.Navigation {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+.Navigation ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.Navigation li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.Navigation a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.Navigation a:hover {
+  text-decoration: underline;
+}
+
+/* Стилі для внутрішніх сторінок */
+.Page {
+  padding: 20px;
+}
+
+/* Стилі для заголовків сторінок */
+.Page h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Стилі для карток фільмів */
+.MovieCard {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Стилі для зображення фільмів */
+.MovieImage {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
