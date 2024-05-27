@@ -43,7 +43,7 @@ export default function MoviesPage() {
     e.preventDefault();
     const query = e.target.elements.query.value;
     if (query.trim() === "") {
-      toast.error("Please, enter text to search for images");
+      toast.error("Please, enter text to search for movies");
       return;
     }
     setSearchParams({ query });
@@ -51,35 +51,37 @@ export default function MoviesPage() {
 
   return (
     <>
-      <header
-        style={{
-          position: "absolute",
-          top: "10px",
-          left: "250px",
-        }}
-      >
-        <form onSubmit={onFormSubmit}>
+      <header className="absolute top-2 left-64 w-full max-w-xl mx-auto">
+        <form onSubmit={onFormSubmit} className="flex items-center space-x-2">
           <input
             name="query"
             type="text"
             autoComplete="off"
             autoFocus
-            placeholder="Search images and photos"
+            placeholder="Search movies"
             defaultValue={searchParams.get("query") || ""}
+            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
           />
-          <button type="submit">Search</button>
-          <Toaster />
+          <button
+            type="submit"
+            className="px-4 py-2 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600"
+          >
+            Search
+          </button>
         </form>
+        <Toaster />
       </header>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          {searchParams.get("query") && (
-            <MovieList movies={movies} error={error} />
-          )}
-        </>
-      )}
+      <main className="mt-16">
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            {searchParams.get("query") && (
+              <MovieList movies={movies} error={error} />
+            )}
+          </>
+        )}
+      </main>
     </>
   );
 }

@@ -1,10 +1,11 @@
-// components/MovieReviews/MovieReviews.jsx
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+
 const MovieReviews = () => {
   const [reviews, setReviews] = useState([]);
   const { movieId } = useParams();
+
   useEffect(() => {
     const fetchReviews = async () => {
       try {
@@ -25,16 +26,16 @@ const MovieReviews = () => {
   }, [movieId]);
 
   return (
-    <div>
-      <h3>Reviews</h3>
+    <div className="container mx-auto px-4 py-8">
+      <h3 className="text-3xl font-bold mb-6">Reviews</h3>
       {reviews.length === 0 ? (
-        <p>No reviews yet.</p>
+        <p className="text-center text-lg">No reviews yet.</p>
       ) : (
-        <ul>
+        <ul className="space-y-4">
           {reviews.map((review) => (
-            <li key={review.id}>
-              <p>{review.content}</p>
-              <p>Author: {review.author}</p>
+            <li key={review.id} className="p-4 border rounded-lg shadow-md">
+              <p className="mb-2">{review.content}</p>
+              <p className="text-sm text-gray-500">Author: {review.author}</p>
             </li>
           ))}
         </ul>

@@ -2,7 +2,6 @@ import { useParams, Link, Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../../components/Loader/loader";
-import css from "./MovieDetailsPage.module.css"
 import { Suspense } from "react";
 
 const MovieDetailsPage = () => {
@@ -38,46 +37,55 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   return (
-    <div>
+    <div className="container mx-auto p-4">
       <Link
         to={location.state ? location.state.from.pathname : "/movies"}
         state={location.state}
+        className="block mb-4 text-red-600 hover:text-red-700 focus:outline-none focus:ring focus:ring-red-600"
       >
         Go back
       </Link>
-      <br />
-      <Suspense fallback={<div>Loading...</div>}>
-        {isLoading ? <Loader /> : null}
+      <Suspense fallback={<Loader />}>
+        {isLoading && <Loader />}
         {response === null ? (
           <p>Error...</p>
         ) : (
-          <div className={css.flexContainer}>
-            <div>
-              <h2>Movie Details</h2>
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-1/3">
+              <h2 className="text-2xl font-bold mb-4">Movie Details</h2>
               {response.poster_path ? (
                 <img
                   src={`https://image.tmdb.org/t/p/w300${response.poster_path}`}
                   alt=""
+                  className="mb-4"
                 />
               ) : (
                 <p>There is no image available</p>
               )}
             </div>
 
-            <div className={css.movieDetails}>
-              <h3>{response.title}</h3>
-              <p>User Score: {response.vote_average}</p>
-              <p>{response.overview}</p>
-              <p>
+            <div className="md:w-2/3 md:pl-8">
+              <h3 className="text-xl font-semibold">{response.title}</h3>
+              <p className="mb-2">User Score: {response.vote_average}</p>
+              <p className="mb-2">{response.overview}</p>
+              <p className="mb-2">
                 Genres:{" "}
                 {response.genres &&
                   response.genres.map((genre) => genre.name).join(", ")}
               </p>
-              <Link className={css.link} to={`/movies/${movieId}/cast`}>
+              <Link
+                to={`/movies/${movieId}/cast`}
+                className="text-red-600 hover:text-red-700 focus:outline-none focus:ring focus:ring-red-600 mr-4"
+              >
                 Cast
               </Link>
 
-              <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
+              <Link
+                to={`/movies/${movieId}/reviews`}
+                className="text-red-600 hover:text-red-700 focus:outline-none focus:ring focus:ring-red-600"
+              >
+                Reviews
+              </Link>
             </div>
           </div>
         )}

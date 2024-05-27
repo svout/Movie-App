@@ -1,7 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import css from "./MovieList.module.css";
-import { useState } from "react";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 
 const MovieList = ({ loading, error, movies }) => {
   const location = useLocation();
@@ -9,21 +7,23 @@ const MovieList = ({ loading, error, movies }) => {
   const listRef = useRef(null);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className="text-center text-xl">Loading...</p>;
   }
 
   if (error) {
-    return <p>Error: {error}</p>;
+    return <p className="text-center text-red-500">Error: {error}</p>;
   }
 
   return (
-    <div className={css.container}>
+    <div className="container mx-auto p-4">
       {movies.length > 0 ? (
-        <ul className={css.list}>
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {movies.map((movie) => (
             <li
               key={movie.id}
-              className={focusMovieId === movie.id ? css.focusItem : css.listItem}
+              className={`p-4 border rounded-lg transition-shadow ${
+                focusMovieId === movie.id ? "shadow-lg" : "shadow"
+              }`}
               onMouseEnter={() => setFocusMovieId(movie.id)}
               onMouseLeave={() => setFocusMovieId(null)}
             >
@@ -32,17 +32,25 @@ const MovieList = ({ loading, error, movies }) => {
                   pathname: `/movies/${movie.id}`,
                   state: { from: location.pathname },
                 }}
+                className="flex flex-col items-start"
               >
-                <div className={css.titleContainer}>
-                  <p className={css.title}>{movie.title}</p>
-                  <p className={css.releaseDate}>{movie.release_date}</p>
-                </div>
+                {movie.poster_path ? (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                    alt={movie.title}
+                    className="mb-2"
+                  />
+                ) : (
+                  <p className="text-gray-500">No image available</p>
+                )}
+                <p className="text-lg font-semibold">{movie.title}</p>
+                <p className="text-sm text-gray-500">{movie.release_date}</p>
               </Link>
             </li>
           ))}
         </ul>
       ) : (
-        <p>No movies found.</p>
+        <p className="text-center text-xl">No movies found.</p>
       )}
     </div>
   );

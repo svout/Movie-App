@@ -34,8 +34,8 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Popular Movies</h2>
+    <div className="container mx-auto p-4">
+      <h2 className="text-3xl font-bold mb-6">Popular Movies</h2>
       <MovieList movies={movies} loading={loading} error={error} />
     </div>
   );

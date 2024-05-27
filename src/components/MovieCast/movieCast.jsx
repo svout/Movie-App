@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import css from "./MovieCast.module.css";
+
 const MovieCast = () => {
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();
+
   useEffect(() => {
     const fetchCast = async () => {
       try {
@@ -25,21 +26,22 @@ const MovieCast = () => {
   }, [movieId]);
 
   return (
-    <div>
-      <h3>Cast</h3>
-      <ul className={css.actorList}>
+    <div className="p-4">
+      <h3 className="text-2xl font-bold mb-4">Cast</h3>
+      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {cast.map((actor) => (
-          <li className={css.actorContainer} key={actor.id}>
+          <li className="flex flex-col items-center" key={actor.id}>
             {actor.profile_path ? null : (
-              <p className={css.noImageText}>There is no image available</p>
+              <p className="text-red-500 mb-2">There is no image available</p>
             )}
-            <img
-              className={css.img}
-              width={150}
-              src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
-              alt=""
-            />
-            {actor.name}
+            {actor.profile_path && (
+              <img
+                className="w-36 h-36 object-cover rounded-full mb-2"
+                src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+                alt={actor.name}
+              />
+            )}
+            <p className="text-center">{actor.name}</p>
           </li>
         ))}
       </ul>
