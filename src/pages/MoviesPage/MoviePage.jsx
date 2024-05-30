@@ -51,7 +51,7 @@ export default function MoviesPage() {
 
   return (
     <>
-      <header className="absolute top-2 left-64 w-full max-w-xl mx-auto">
+      <div className="absolute top-2 left-64 w-full max-w-xl mx-auto">
         <form onSubmit={onFormSubmit} className="flex items-center space-x-2">
           <input
             name="query"
@@ -70,7 +70,7 @@ export default function MoviesPage() {
           </button>
         </form>
         <Toaster />
-      </header>
+      </div>
       <main className="mt-16">
         {loading ? (
           <Loader />
